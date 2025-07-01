@@ -1,12 +1,20 @@
-body {
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%, #1e3c72 100%);
-    background-attachment: fixed;
-    background-size: 400% 400%;
-    animation: gradientMove 12s ease-in-out infinite;
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
+}
+body {
     min-height: 100vh;
+    min-width: 100vw;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+    box-sizing: border-box;
+}
+html {
+    height: 100%;
 }
 @keyframes gradientMove {
     0% {background-position: 0% 50%;}
@@ -15,27 +23,34 @@ body {
 }
 .main-flex {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    min-height: 90vh;
-    gap: 40px;
+    min-height: 100vh;
+    width: 100vw;
+    gap: 32px;
+    box-sizing: border-box;
 }
 .left-col, .right-col {
-    background: rgba(255,255,255,0.97);
-    border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(33,147,176,0.18);
-    padding: 48px 36px 40px 36px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 6px 32px rgba(0,0,0,0.10);
+    padding: 36px 28px 28px 28px;
     min-width: 320px;
-    max-width: 440px;
+    max-width: 400px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: box-shadow 0.3s;
+    align-items: center;
+    box-sizing: border-box;
 }
 .left-col {
-    align-items: flex-start;
+    min-width: 320px;
+    max-width: 350px;
+    width: 100%;
+    align-items: center;
     border-right: 5px solid #6dd5ed33;
-    box-shadow: 0 8px 32px rgba(33,147,176,0.13);
     position: relative;
 }
 .left-col::before {
@@ -97,12 +112,14 @@ input[type="password"]:focus {
 }
 .right-col {
     min-width: 340px;
-    max-width: 540px;
+    max-width: 500px;
+    width: 100%;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     opacity: 0;
     transform: translateX(60px);
     transition: all 0.7s cubic-bezier(.23,1.02,.32,1);
@@ -201,7 +218,26 @@ input[type="password"]:focus {
     background: #e0f7fa;
 }
 @media (max-width: 900px) {
-    .main-flex { flex-direction: column; align-items: stretch; gap: 18px; }
-    .left-col, .right-col { max-width: 100%; min-width: 0; border-right: none; }
-    .left-col::before { display: none; }
+    .main-flex {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        gap: 18px;
+    }
+    .left-col, .right-col {
+        max-width: 95vw;
+        min-width: 0;
+        width: 100%;
+        align-items: center;
+    }
+}
+@media (max-width: 600px) {
+    .main-flex {
+        gap: 8px;
+    }
+    .left-col, .right-col {
+        padding: 18px 6vw 18px 6vw;
+        border-radius: 12px;
+    }
 }

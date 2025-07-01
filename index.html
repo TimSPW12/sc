@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBook Premium - Materi Rahasia</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .main-flex {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            min-height: 80vh;
+            gap: 32px;
+        }
+        .left-col, .right-col {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 6px 32px rgba(0,0,0,0.10);
+            padding: 36px 28px 28px 28px;
+            min-width: 320px;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .left-col {
+            min-width: 320px;
+            max-width: 350px;
+            align-items: flex-start;
+        }
+        .right-col {
+            min-width: 340px;
+            max-width: 500px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 0.7s cubic-bezier(.23,1.02,.32,1);
+        }
+        .right-col.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .watermark {
+            pointer-events: none;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 2;
+            opacity: 0.18;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: #1a237e;
+            font-weight: bold;
+            user-select: none;
+            white-space: pre;
+            transform: rotate(-20deg);
+            animation: floatWatermark 8s ease-in-out infinite alternate;
+        }
+        @media (max-width: 900px) {
+            .main-flex { flex-direction: column; align-items: stretch; gap: 18px; }
+            .left-col, .right-col { max-width: 100%; min-width: 0; }
+        }
+        .judul-materi {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .pendahuluan {
+            font-size: 1.1em;
+            margin-bottom: 24px;
+            text-align: justify;
+        }
+        .bab-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 18px 0 12px 0;
+            text-align: left;
+            position: relative;
+        }
+        .bab-title:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, #1a237e, #e0eafc);
+            top: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        .motivasi {
+            font-size: 1.1em;
+            font-style: italic;
+            margin-top: 12px;
+            text-align: center;
+        }
+        .sosmed-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .icon-sosmed {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s;
+        }
+        .icon-sosmed:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-flex">
+        <div class="left-col">
+            <div class="sosmed-logo">
+                <a href="https://instagram.com/" target="_blank" title="Instagram"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" class="icon-sosmed"></a>
+                <a href="https://facebook.com/" target="_blank" title="Facebook"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" class="icon-sosmed"></a>
+                <a href="https://wa.me/" target="_blank" title="WhatsApp"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" class="icon-sosmed"></a>
+            </div>
+            <h1>Selamat Datang!</h1>
+            <p id="desc">Masukkan password untuk mengakses materi buku eksklusif.</p>
+            <form id="formPass" onsubmit="return cekPassword()" style="margin-bottom:24px; width:100%;">
+                <input type="password" id="pass" placeholder="Password" style="padding:10px 16px; border-radius:8px; border:1px solid #bbb; font-size:1em; width:100%; margin-bottom:12px;">
+                <button class="btn" type="submit" style="width:100%;">Masuk</button>
+            </form>
+            <button class="btn" id="bacaBtn" onclick="showMateri()" style="display:none; width:100%;">Baca Materi</button>
+        </div>
+        <div class="right-col" id="materi">
+            <div class="watermark" id="wm">EBOOK PREMIUM\nTIDAK UNTUK DISEBAR</div>
+            <div class="isi-materi" style="position:relative;z-index:1;">
+                <h1 class="judul-materi">Judul Materi Buku Premium</h1>
+                <p class="pendahuluan">Selamat datang di eBook eksklusif ini. Buku ini berisi 25 bab yang akan membimbing Anda menuju kesuksesan dan pengembangan diri. Bacalah setiap bab dengan seksama dan terapkan ilmunya dalam kehidupan Anda.</p>
+                <hr style="margin: 24px 0; border: none; border-top: 2px solid #e0eafc;">
+                <h2 class="bab-title">Bab 1: Rahasia Sukses</h2>
+                <p>Materi eksklusif hanya untuk pembeli resmi. Konten ini dilindungi dan tidak boleh disalin, direkam, atau diduplikasi.</p>
+                <ul>
+                    <li>Fokus pada tujuan</li>
+                    <li>Disiplin dan konsisten</li>
+                    <li>Belajar dari kegagalan</li>
+                </ul>
+                <h2 class="bab-title">Bab 2: Mindset Pemenang</h2>
+                <p>Bangun pola pikir positif dan percaya diri. Jangan biarkan kegagalan menghentikan langkahmu.</p>
+                <!-- ...existing code for Bab 3-24... -->
+                <h2 class="bab-title">Bab 25: Kata-Kata Motivasi</h2>
+                <p class="motivasi">Jangan pernah menyerah pada impianmu. Setiap langkah kecil hari ini adalah pondasi untuk kesuksesan besar di masa depan. Teruslah belajar, berjuang, dan percaya pada dirimu sendiri!</p>
+            </div>
+        </div>
+    </div>
+    <script>
+    // Proteksi: blokir klik kanan, select, copy, print, screen record (sebatas browser)
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
+    document.addEventListener('selectstart', e => e.preventDefault());
+    document.addEventListener('copy', e => {e.preventDefault(); alert('Copy diblokir!');});
+    document.addEventListener('cut', e => {e.preventDefault(); alert('Cut diblokir!');});
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey && ['s','p','u','c','a'].includes(e.key.toLowerCase())) ||
+            (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') ||
+            e.key === 'PrintScreen') {
+            e.preventDefault();
+            alert('Aksi ini diblokir demi keamanan materi.');
+        }
+        if (e.key === 'F12') e.preventDefault();
+    });
+    window.addEventListener('keyup', function(e) {
+        if (e.key === 'PrintScreen') {
+            navigator.clipboard.writeText('Akses dilarang!');
+            alert('Screenshot diblokir.');
+        }
+    });
+    document.addEventListener('mousedown', function(e) {
+        if (e.button === 2) e.preventDefault();
+    });
+    setInterval(function() {
+        var wm = document.getElementById('wm');
+        if (wm) {
+            var t = Date.now()/1000;
+            wm.style.opacity = 0.13 + 0.07*Math.abs(Math.sin(t));
+            wm.style.transform = `rotate(-20deg) translateY(${10*Math.sin(t/2)}px)`;
+        }
+    }, 60);
+    window.addEventListener('dragover', function(e) {e.preventDefault();});
+    window.addEventListener('drop', function(e) {e.preventDefault();});
+    // Deteksi screen recording (tidak 100% efektif)
+    if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
+        setInterval(function() {
+            if (document.hasFocus() && window.outerWidth === screen.width && window.outerHeight === screen.height) {
+                document.title = 'JANGAN REKAM LAYAR!';
+            } else {
+                document.title = 'eBook Premium - Materi Rahasia';
+            }
+        }, 2000);
+    }
+    // Password protection
+    function cekPassword() {
+        var pass = document.getElementById('pass').value;
+        if (pass === 'ebook2025') { // Ganti password sesuai keinginan
+            document.getElementById('formPass').style.display = 'none';
+            document.getElementById('desc').textContent = 'Password benar. Silakan klik tombol di bawah untuk membaca materi.';
+            document.getElementById('bacaBtn').style.display = 'inline-block';
+        } else {
+            alert('Password salah!');
+        }
+        return false;
+    }
+    function showMateri() {
+        document.getElementById('bacaBtn').style.display = 'none';
+        var materi = document.getElementById('materi');
+        materi.classList.add('active');
+        document.getElementById('desc').style.display = 'none';
+    }
+    </script>
+</body>
+</html>

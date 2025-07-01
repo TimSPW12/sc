@@ -1,0 +1,207 @@
+body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%, #1e3c72 100%);
+    background-attachment: fixed;
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease-in-out infinite;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+.main-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    gap: 40px;
+}
+.left-col, .right-col {
+    background: rgba(255,255,255,0.97);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(33,147,176,0.18);
+    padding: 48px 36px 40px 36px;
+    min-width: 320px;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: box-shadow 0.3s;
+}
+.left-col {
+    align-items: flex-start;
+    border-right: 5px solid #6dd5ed33;
+    box-shadow: 0 8px 32px rgba(33,147,176,0.13);
+    position: relative;
+}
+.left-col::before {
+    content: '';
+    position: absolute;
+    left: -30px; top: 30px;
+    width: 60px; height: 60px;
+    background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+    opacity: 0.13;
+    border-radius: 50%;
+    z-index: 0;
+}
+.left-col h1 {
+    color: #2193b0;
+    font-size: 2.3em;
+    margin-bottom: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+.left-col p {
+    color: #1e3c72;
+    font-size: 1.13em;
+    margin-bottom: 18px;
+    z-index: 1;
+}
+input[type="password"] {
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: 1.5px solid #6dd5ed;
+    font-size: 1.12em;
+    width: 100%;
+    margin-bottom: 16px;
+    background: #f7fbfd;
+    transition: border 0.2s;
+    z-index: 1;
+}
+input[type="password"]:focus {
+    border: 1.5px solid #2193b0;
+    outline: none;
+}
+.btn {
+    background: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%);
+    color: #fff;
+    padding: 15px 0;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.15em;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(33,147,176,0.10);
+    transition: background 0.2s, transform 0.2s;
+    margin-bottom: 10px;
+    z-index: 1;
+}
+.btn:hover {
+    background: #1e3c72;
+    transform: scale(1.04);
+}
+.right-col {
+    min-width: 340px;
+    max-width: 540px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(60px);
+    transition: all 0.7s cubic-bezier(.23,1.02,.32,1);
+    box-shadow: 0 8px 32px rgba(33,147,176,0.18);
+}
+.right-col.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+.isi-materi h2 {
+    color: #2193b0;
+    margin-top: 0;
+    font-size: 1.5em;
+    font-weight: 800;
+}
+.isi-materi p, .isi-materi ul {
+    color: #1e3c72;
+    font-size: 1.13em;
+}
+.isi-materi ul {
+    margin-left: 18px;
+    margin-bottom: 18px;
+}
+.watermark {
+    pointer-events: none;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 2;
+    opacity: 0.13;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    color: #2193b0;
+    font-weight: bold;
+    user-select: none;
+    white-space: pre;
+    transform: rotate(-20deg);
+    animation: floatWatermark 8s ease-in-out infinite alternate;
+}
+@keyframes floatWatermark {
+    0% { transform: translateY(0) rotate(-20deg); }
+    100% { transform: translateY(20px) rotate(-20deg); }
+}
+.judul-materi {
+    font-size: 2.3em;
+    font-weight: 900;
+    color: #1e3c72;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+.pendahuluan {
+    font-size: 1.18em;
+    color: #1e3c72;
+    margin-bottom: 18px;
+    text-align: center;
+    font-weight: 500;
+}
+.bab-title {
+    font-size: 1.45em;
+    font-weight: 800;
+    color: #2193b0;
+    margin-top: 32px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+.motivasi {
+    font-size: 1.18em;
+    color: #1e3c72;
+    font-style: italic;
+    font-weight: 600;
+    margin-top: 24px;
+    text-align: center;
+}
+.sosmed-logo {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+    align-items: center;
+    z-index: 2;
+}
+.icon-sosmed {
+    width: 32px;
+    height: 32px;
+    filter: grayscale(0.2) brightness(0.9);
+    transition: filter 0.2s, transform 0.2s;
+    border-radius: 50%;
+    background: #f7fbfd;
+    padding: 4px;
+    box-shadow: 0 2px 8px rgba(33,147,176,0.08);
+}
+.icon-sosmed:hover {
+    filter: none;
+    transform: scale(1.13) rotate(-8deg);
+    background: #e0f7fa;
+}
+@media (max-width: 900px) {
+    .main-flex { flex-direction: column; align-items: stretch; gap: 18px; }
+    .left-col, .right-col { max-width: 100%; min-width: 0; border-right: none; }
+    .left-col::before { display: none; }
+}
